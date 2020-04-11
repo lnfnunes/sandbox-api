@@ -1,4 +1,4 @@
-const errorVO = require('../../models/error')
+const errorVO = require('../../src/models/error')
 
 describe('models::error', () => {
   it('Should return an Internal Server Error (500) as default error', () => {

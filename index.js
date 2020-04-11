@@ -3,15 +3,20 @@ const jsonServer = require('json-server')
 const server = jsonServer.create()
 const middlewares = jsonServer.defaults()
 
-server.use(middlewares)
+// Middlewares
 server.use(jsonServer.bodyParser)
-server.use(require('./middlewares'))
+server.use(middlewares)
+server.use(require('./src/middlewares'))
 
-server.use(jsonServer.rewriter(require('./proxy.json')))
-require('./routes')(server)
+// Routes
+server.use(jsonServer.rewriter(require('./src/routes/proxy.json')))
+require('./src/routes')(server)
 
-const port = 3000
-server.listen(port, () => {
+const PORT = process.env.PORT || 8080
+server.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`JSON Server is running at port ${port}`)
+  console.log(`
+  JSON Server is running at port ${PORT}
+  http://localhost:${PORT}/status
+  `)
 })

@@ -1,4 +1,4 @@
-const userVO = require('../../models/user')
+const userVO = require('../../src/models/user')
 
 describe('models::user', () => {
   it('Should return a user with id 0 as default', () => {

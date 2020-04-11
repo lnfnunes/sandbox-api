@@ -1,7 +1,7 @@
 const { mockRequest, mockResponse } = require('mock-req-res')
 const _ = require('lodash')
 
-const usersController = require('../../controllers').users
+const usersController = require('../../src/controllers').users
 
 let req
 let res
