@@ -3,7 +3,10 @@ const _ = require('lodash')
 
 const usersController = require('../../controllers').users
 
-let req, res, spyStatus, spyResponse
+let req
+let res
+let spyStatus
+let spyResponse
 beforeEach(() => {
   req = mockRequest()
   res = mockResponse()
@@ -17,10 +20,12 @@ describe('/v1/users', () => {
 
     const expectedStatus = 200
     const expectedResponse = {
-      users: _.times(3, id => expect.objectContaining({
-        id,
-        name: expect.any(String),
-      }))
+      users: _.times(3, (id) =>
+        expect.objectContaining({
+          id,
+          name: expect.any(String),
+        }),
+      ),
     }
 
     expect(spyStatus).toHaveBeenCalledWith(expectedStatus)
