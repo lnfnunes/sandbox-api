@@ -23,7 +23,8 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/ --fix"
   },
   "husky": {
     "hooks": {
@@ -33,7 +34,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint \"**/*.js\" --ignore-pattern node_modules/ --fix"
+      "npm run lint"
     ]
   },
   "jest": {
