@@ -1,8 +1,14 @@
-const controllers = require('../controllers')
+const path = require('path')
 
-module.exports = (server) => {
-  server.get('/status', controllers.status.getStatus)
+const { getAllIndexFiles } = require('../helpers')
 
-  server.get('/v1/users', controllers.users.getUsers)
-  server.get('/v1/users/:userId', controllers.users.getUser)
+module.exports = {
+  load: (router) => {
+    getAllIndexFiles(path.join(__dirname, '../controllers')).forEach((controller) =>
+      // eslint-disable-next-line import/no-dynamic-require
+      require(path.relative(__dirname, controller))(router),
+    )
+
+    return router
+  },
 }
