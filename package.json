@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "faker": "^4.1.0",
-    "json-server": "^0.16.1",
+    "http-status-codes": "^1.4.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
@@ -17,14 +18,14 @@
     "husky": "^4.2.5",
     "jest": "^25.3.0",
     "lint-staged": "^10.1.3",
-    "mock-req-res": "^1.1.4",
     "prettier": "^2.0.4",
-    "sinon": "^9.0.2"
+    "supertest": "^4.0.2"
   },
   "scripts": {
-    "test": "jest",
+    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/ --fix",
     "start": "node index.js",
-    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/ --fix"
+    "tdd": "jest --watch",
+    "test": "jest --coverage"
   },
   "husky": {
     "hooks": {
@@ -36,26 +37,6 @@
     "*.js": [
       "npm run lint"
     ]
-  },
-  "jest": {
-    "bail": false,
-    "clearMocks": true,
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.js",
-      "!**/node_modules/**",
-      "!**/coverage/**",
-      "!**/routes/**",
-      "!index.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 80,
-        "functions": 80,
-        "lines": 80,
-        "statements": -10
-      }
-    }
   },
   "keywords": [],
   "author": "",

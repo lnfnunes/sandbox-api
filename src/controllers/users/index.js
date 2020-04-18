@@ -1,23 +1,41 @@
 const _ = require('lodash')
+const HttpStatus = require('http-status-codes')
 
-const userVO = require('../../models/user')
-const errorVO = require('../../models/error')
+const { User } = require('../../models')
+const { validateGetUser, validateCreateUser } = require('./validate')
 
-module.exports = {
-  getUsers: (req, res) => {
-    res.status(200).json({
-      users: _.times(3, userVO),
-    })
-  },
-  getUser: (req, res) => {
-    const { userId } = req.params
+function getUsers(req, res) {
+  res.status(HttpStatus.OK).json({
+    users: _.times(6, User),
+  })
+}
 
-    if (!userId) {
-      const errorCode = 500
-      res.status(errorCode).json(errorVO(errorCode))
-      return
-    }
+function getUser(req, res) {
+  const { userId } = req.params
 
-    res.status(200).json(userVO(userId))
-  },
+  const validationError = validateGetUser(userId)
+  if (validationError) {
+    res.status(validationError.statusCode).json(validationError.body)
+    return
+  }
+
+  res.status(HttpStatus.OK).json(User(userId))
+}
+
+function createUser(req, res) {
+  const { body } = req
+
+  const validationError = validateCreateUser(body)
+  if (validationError) {
+    res.status(validationError.statusCode).json(validationError.body)
+    return
+  }
+
+  res.status(HttpStatus.CREATED).json()
+}
+
+module.exports = (router) => {
+  router.get('/users', getUsers)
+  router.get('/users/:userId', getUser)
+  router.post('/users', createUser)
 }

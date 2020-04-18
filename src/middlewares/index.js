@@ -1,5 +1,12 @@
-module.exports = (req, res, next) => {
-  // eslint-disable-next-line no-console
-  console.log(`${Date.now()} [${req.method}] ${req.path}`)
-  next()
-}
+const path = require('path')
+
+const { getAllNonIndexFiles } = require('../helpers')
+
+const middlewares = getAllNonIndexFiles(__dirname).reduce((acc, item) => {
+  const middlewareName = path.basename(item)
+  // eslint-disable-next-line import/no-dynamic-require
+  acc[middlewareName] = require(item)
+  return acc
+}, {})
+
+module.exports = middlewares
