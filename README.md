@@ -1,5 +1,10 @@
 # Sandbox API (mock)
 
+> Sandbox mock API for frontend development
+
+[![Build Status][ci-image]][ci-url]
+[![Coverage Status][coverage-image]][coverage-url]
+
 It's a base NodeJS server application to fastly create your own back-end API for prototyping and mocking during front-end development.
 
 It uses the [Express](https://expressjs.com/) module as the HTTP Server.
@@ -43,4 +48,9 @@ npm test    # Run the test suit with coverage
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE) © Leandro Nunes
+
+[ci-image]: https://travis-ci.org/lnfnunes/sandbox-api.svg?branch=master
+[ci-url]: https://travis-ci.org/lnfnunes/sandbox-api
+[coverage-image]: https://coveralls.io/repos/github/lnfnunes/sandbox-api/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/lnfnunes/sandbox-api?branch=master

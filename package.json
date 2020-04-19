@@ -1,8 +1,20 @@
 {
   "name": "sandbox-api",
-  "version": "1.0.0",
   "description": "",
+  "version": "0.1.0",
+  "author": {
+    "name": "Leandro Nunes",
+    "email": "dr1design@gmail.com",
+    "url": "https://lnfnunes.com.br"
+  },
+  "repository": "https://github.com/lnfnunes/sandbox-api",
   "main": "index.js",
+  "scripts": {
+    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/ --fix",
+    "start": "node index.js",
+    "tdd": "jest --watch",
+    "test": "jest --coverage"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "faker": "^4.1.0",
@@ -10,6 +22,7 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "coveralls": "^3.0.11",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.10.1",
@@ -21,11 +34,8 @@
     "prettier": "^2.0.4",
     "supertest": "^4.0.2"
   },
-  "scripts": {
-    "lint": "eslint \"**/*.js\" --ignore-pattern node_modules/ --fix",
-    "start": "node index.js",
-    "tdd": "jest --watch",
-    "test": "jest --coverage"
+  "engines": {
+    "node": ">=8"
   },
   "husky": {
     "hooks": {
@@ -38,7 +48,10 @@
       "npm run lint"
     ]
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "mock",
+    "sandbox",
+    "api"
+  ],
   "license": "ISC"
 }
