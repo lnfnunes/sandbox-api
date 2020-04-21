@@ -81,11 +81,13 @@ describe('[GET] /users/7', () => {
 
 describe('[POST] /users', () => {
   it('Should return User Created (201)', async () => {
-    const payload = {
+    const headers = {
       authorization: faker.random.uuid(),
+    }
+    const payload = {
       id: faker.random.uuid(),
     }
-    const result = await request(server).post('/users').send(payload)
+    const result = await request(server).post('/users').set(headers).send(payload)
 
     const expected = {
       statusCode: 201,
@@ -97,10 +99,11 @@ describe('[POST] /users', () => {
   })
 
   it('Should return Bad Request (400)', async () => {
-    const payload = {
+    const headers = {
       authorization: faker.random.uuid(),
     }
-    const result = await request(server).post('/users').send(payload)
+    const payload = {}
+    const result = await request(server).post('/users').set(headers).send(payload)
 
     const expected = {
       statusCode: 400,
@@ -115,8 +118,9 @@ describe('[POST] /users', () => {
   })
 
   it('Should return Unauthorized (401)', async () => {
+    const headers = {}
     const payload = {}
-    const result = await request(server).post('/users').send(payload)
+    const result = await await request(server).post('/users').set(headers).send(payload)
 
     const expected = {
       statusCode: 401,

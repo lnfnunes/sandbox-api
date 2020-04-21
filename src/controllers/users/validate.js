@@ -19,14 +19,7 @@ function validateGetUser(userId) {
   }
 }
 
-function validateCreateUser({ authorization, id }) {
-  if (!authorization) {
-    return {
-      statusCode: HttpStatus.UNAUTHORIZED,
-      body: AppError.create(HttpStatus.UNAUTHORIZED),
-    }
-  }
-
+function validateCreateUser({ id }) {
   if (!id) {
     return {
       statusCode: HttpStatus.BAD_REQUEST,

@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const HttpStatus = require('http-status-codes')
 
+const { useAuth } = require('../../middlewares')
 const { User } = require('../../models')
 const { validateGetUser, validateCreateUser } = require('./validate')
 
@@ -37,5 +38,5 @@ function createUser(req, res) {
 module.exports = (router) => {
   router.get('/users', getUsers)
   router.get('/users/:userId', getUser)
-  router.post('/users', createUser)
+  router.post('/users', useAuth, createUser)
 }

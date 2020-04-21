@@ -28,7 +28,7 @@ Now if you go to http://localhost:3000, you'll get
 
 ```json
 {
-  "status": "up"
+  "status": "UP"
 }
 ```
 
@@ -36,14 +36,31 @@ Now if you go to http://localhost:3000, you'll get
 
 ## Scripts
 
-```bash
-npm install # Install the dependencies
-npm lint    # Lint src files using eslint to ensure a code styling and find code smells.
-            # This command runs automatically before each commit.
-npm start   # Start the application
-npm run tdd # Run the test suit in watch mode (automatically runs on code change)
-npm test    # Run the test suit with coverage
-            # This command runs automatically before each push.
+```sh
+npm install   # Install the dependencies
+npm lint      # Lint src files using Eslint and Prettier
+              # to ensure a code styling and find code smells.
+              # Runs automatically before each commit.
+npm start     # Start the application
+npm run tdd   # Run the test suits in watch mode.
+              # Automatically runs during code changes.
+npm test      # Run the test suit with coverage
+              # Runs automatically before each push.
+```
+
+## Folder structure
+
+```sh
+├── __mocks__         # Manual mocks used by the tests (Jest)
+├── __tests__         # Test files (Jest)
+├── index.js          # Application entry point
+└── src
+    ├── controllers   # Controllers for each Route
+    ├── helpers       # Shared helpers (utils)
+    ├── middlewares   # Middlewares for the application
+    ├── models        # Models of the application
+    ├── routes        # Routes auto-loader
+    ├── server.js     # Server initialization
 ```
 
 ## License
