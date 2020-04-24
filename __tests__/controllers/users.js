@@ -5,7 +5,7 @@ const request = require('supertest')
 const server = require('../../src/server')
 
 describe('[GET] /users', () => {
-  it('Should return a list of 6 users', async () => {
+  it('Should return a list of 6 users', async (done) => {
     const payload = {}
     const result = await request(server).get('/users').send(payload)
 
@@ -23,11 +23,12 @@ describe('[GET] /users', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 })
 
 describe('[GET] /users/7', () => {
-  it('Should return a single user', async () => {
+  it('Should return a single user', async (done) => {
     const userId = 7
     const payload = {}
     const result = await request(server).get(`/users/${userId}`).send(payload)
@@ -42,9 +43,10 @@ describe('[GET] /users/7', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 
-  it('Should return an User Not Found (404) error', async () => {
+  it('Should return an User Not Found (404) error', async (done) => {
     const userId = -1
     const payload = {}
     const result = await request(server).get(`/users/${userId}`).send(payload)
@@ -59,9 +61,10 @@ describe('[GET] /users/7', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 
-  it('Should return an Internal Server Error (500) error', async () => {
+  it('Should return an Internal Server Error (500) error', async (done) => {
     const userId = 0
     const payload = {}
     const result = await request(server).get(`/users/${userId}`).send(payload)
@@ -76,11 +79,12 @@ describe('[GET] /users/7', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 })
 
 describe('[POST] /users', () => {
-  it('Should return User Created (201)', async () => {
+  it('Should return User Created (201)', async (done) => {
     const headers = {
       authorization: faker.random.uuid(),
     }
@@ -96,9 +100,10 @@ describe('[POST] /users', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 
-  it('Should return Bad Request (400)', async () => {
+  it('Should return Bad Request (400)', async (done) => {
     const headers = {
       authorization: faker.random.uuid(),
     }
@@ -115,9 +120,10 @@ describe('[POST] /users', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 
-  it('Should return Unauthorized (401)', async () => {
+  it('Should return Unauthorized (401)', async (done) => {
     const headers = {}
     const payload = {}
     const result = await await request(server).post('/users').set(headers).send(payload)
@@ -132,5 +138,6 @@ describe('[POST] /users', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 })

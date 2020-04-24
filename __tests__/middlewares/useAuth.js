@@ -10,7 +10,7 @@ router.get('/secure', useAuth, (req, res) => res.status(200).json())
 server.use(router)
 
 describe('/secure', () => {
-  it('Should return Unauthorized (401)', async () => {
+  it('Should return Unauthorized (401)', async (done) => {
     const headers = {}
     const payload = {}
     const result = await await request(server).get('/secure').set(headers).send(payload)
@@ -25,9 +25,10 @@ describe('/secure', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 
-  it('Should return OK (200)', async () => {
+  it('Should return OK (200)', async (done) => {
     const headers = {
       authorization: faker.random.uuid(),
     }
@@ -39,5 +40,6 @@ describe('/secure', () => {
     }
 
     expect(result.statusCode).toEqual(expected.statusCode)
+    done()
   })
 })

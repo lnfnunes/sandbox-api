@@ -3,7 +3,7 @@ const request = require('supertest')
 const server = require('../../src/server')
 
 describe('/', () => {
-  it('Should return server status', async () => {
+  it('Should return server status', async (done) => {
     const payload = {}
     const result = await request(server).get('/').send(payload)
 
@@ -16,11 +16,12 @@ describe('/', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 })
 
 describe('/info', () => {
-  it('Should return server status and version', async () => {
+  it('Should return server status and version', async (done) => {
     const payload = {}
     const result = await request(server).get('/info').send(payload)
 
@@ -34,11 +35,12 @@ describe('/info', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 })
 
 describe('/404', () => {
-  it('Should return a Page Not Found (404) error', async () => {
+  it('Should return a Page Not Found (404) error', async (done) => {
     const payload = {}
     const result = await request(server).get('/404').send(payload)
 
@@ -52,5 +54,6 @@ describe('/404', () => {
 
     expect(result.statusCode).toEqual(expected.statusCode)
     expect(result.body).toEqual(expected.body)
+    done()
   })
 })

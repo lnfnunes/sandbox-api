@@ -23,7 +23,7 @@ Start the server
 $ npm start
 ```
 
-You should see a message _"JSON Server is running at port 3000"_.\
+You should see a message _"Server is running at port 3000"_.\
 Now if you go to http://localhost:3000, you'll get
 
 ```json
