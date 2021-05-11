@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "http-status-codes": "^1.4.0",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "coveralls": "^3.0.11",
